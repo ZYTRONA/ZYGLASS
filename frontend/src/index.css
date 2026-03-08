@@ -1,0 +1,184 @@
+/* ── ZYGLASS VISION OS — Design System ─────────────────────────── */
+:root {
+  --bg-0:  #040608;
+  --bg-1:  #080d14;
+  --bg-2:  #0c1220;
+  --bg-3:  #111a2c;
+
+  --cyan:         #22d3ee;
+  --cyan-dim:     rgba(34,211,238,0.12);
+  --cyan-border:  rgba(34,211,238,0.18);
+  --cyan-glow:    0 0 20px rgba(34,211,238,0.35);
+
+  --purple:       #a855f7;
+  --purple-dim:   rgba(168,85,247,0.12);
+  --green:        #4ade80;
+  --green-dim:    rgba(74,222,128,0.12);
+  --amber:        #fbbf24;
+  --amber-dim:    rgba(251,191,36,0.12);
+  --red:          #f87171;
+  --red-dim:      rgba(248,113,113,0.12);
+
+  --text-1: #eef2f8;
+  --text-2: #8a9fba;
+  --text-3: #3f566e;
+
+  --r:  6px;
+  --rl: 12px;
+  --rx: 18px;
+
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--text-1);
+  background: var(--bg-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeSpeed;
+}
+
+a {
+  font-weight: 500;
+  color: #22d3ee;
+  text-decoration: none;
+}
+a:hover {
+  color: #06b6d4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* 100dvh = actual visible viewport, accounts for mobile browser chrome */
+html {
+  height: 100dvh;
+  min-width: 320px;
+  overflow: hidden;
+}
+
+body, #root {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(34,211,238,0.25);
+  color: var(--cyan);
+}
+
+/* ── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text-3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-2); }
+
+/* ── Keyframes ─────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.9); opacity: 0.8; }
+  70%  { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
+@keyframes glow-breathe {
+  0%,100% { box-shadow: 0 0 10px rgba(34,211,238,0.2); }
+  50%      { box-shadow: 0 0 28px rgba(34,211,238,0.55), 0 0 60px rgba(34,211,238,0.15); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes blink-cursor {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Utility classes ───────────────────────── */
+.anim-slide-up  { animation: slide-up  0.4s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-in  { animation: slide-in-left 0.35s cubic-bezier(.22,1,.36,1) both; }
+.spin-slow      { animation: spin-slow 8s linear infinite; }
+.glow-breathe   { animation: glow-breathe 3s ease-in-out infinite; }
+.cursor-blink::after { content:'|'; animation: blink-cursor 1s step-end infinite; }
+
+/* ── Video scanlines ──────────────────────── */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.06) 3px,
+    rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
+}
+
+/* ── Glass card ───────────────────────────── */
+.glass {
+  background: rgba(12, 18, 32, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34,211,238,0.10);
+}
+
+/* ── Shimmer text ─────────────────────────── */
+.text-shimmer {
+  background: linear-gradient(90deg, var(--cyan) 25%, #fff 50%, var(--cyan) 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Tailwind Scrollbar Utilities (compat) ── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 3px;
+}
+
+.scrollbar-thumb-slate-700::-webkit-scrollbar-thumb {
+  background-color: #334155;
+}
+
+.scrollbar-track-slate-900::-webkit-scrollbar-track {
+  background-color: #0f172a;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

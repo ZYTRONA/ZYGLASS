@@ -1,0 +1,31 @@
+# Gitignore for AI GLASS project
+
+# Large models and weights
+*.zip
+*.pt
+*.onnx
+*.ts
+*.pth
+*.pkl
+dataset/
+datasets/
+runs/
+model/
+vosk-model-*/
+
+# Environments
+train_env/
+venv/
+.env
+
+# Node.js
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# IDE and temp files
+.vscode/
+.pio/
+__pycache__/
+*.log
+.DS_Store
